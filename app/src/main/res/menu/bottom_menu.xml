@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/btnStore"
+        android:icon="@drawable/baseline_store_24"
+        android:title="Store"/>
+    <item
+        android:id="@+id/btnMenu"
+        android:icon="@drawable/baseline_restaurant_menu_24"
+        android:title="Menu"/>
+    <item
+        android:id="@+id/btnTable"
+        android:icon="@drawable/baseline_table_restaurant_24"
+        android:title="Table"/>
+
+
+</menu>

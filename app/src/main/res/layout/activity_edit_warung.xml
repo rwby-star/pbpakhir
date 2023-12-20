@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:orientation="vertical"
+    tools:context=".EditWarung">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/editTextIdWarung"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="ID Warung" />
+
+        <EditText
+            android:id="@+id/editTextNamaWarung"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/editTextIdWarung"
+            android:layout_marginTop="16dp"
+            android:hint="Nama Warung" />
+
+        <ImageView
+            android:id="@+id/inputlogopreview"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/ic_launcher_foreground"
+            android:scaleType="center"
+            android:layout_below="@id/editTextNamaWarung" />
+
+        <Button
+            android:id="@+id/btnLogo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/inputlogopreview"
+            android:layout_marginTop="16dp"
+            android:text="Input Logo" />
+
+        <ImageView
+            android:id="@+id/inputgambarpreview"
+            android:layout_width="350dp"
+            android:layout_height="200dp"
+            android:layout_centerHorizontal="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_launcher_foreground"
+            android:layout_below="@id/btnLogo" />
+
+        <Button
+            android:id="@+id/btnGambar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/inputgambarpreview"
+            android:layout_marginTop="16dp"
+            android:text="Input Gambar" />
+
+        <Button
+            android:id="@+id/btnUpdate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/btnGambar"
+            android:layout_marginTop="16dp"
+            android:text="Update" />
+
+
+    </RelativeLayout>
+
+</ScrollView>
