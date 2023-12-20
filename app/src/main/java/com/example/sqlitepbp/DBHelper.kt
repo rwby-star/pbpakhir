@@ -13,6 +13,14 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "Login.db", null, 1
         var gambar: String
     )
 
+    data class Menu(
+        var idmenu: String,
+        var namamenu: String,
+        var hargamenu: String,
+        var kategorimenu: String,
+        var gambarmenu: String
+    )
+
     companion object {
         const val DBNAME = "Login.db"
     }
@@ -20,7 +28,7 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "Login.db", null, 1
     override fun onCreate(MyDB: SQLiteDatabase) {
         MyDB.execSQL("CREATE TABLE users(username TEXT PRIMARY KEY, password TEXT)")
         MyDB.execSQL("CREATE TABLE warung(idwarung TEXT PRIMARY KEY, namawarung TEXT, logo TEXT, gambar TEXT)")
-        MyDB.execSQL("create Table menu(idmenu TEXT primary key, namamenu TEXT, hargamenu TEXT, gambarmenu TEXT, kategorimenu TEXT, idwarung TEXT, foreign key (idwarung) references warung(idwarung))")
+        MyDB.execSQL("CREATE TABLE menu(idmenu TEXT primary key, namamenu TEXT, hargamenu TEXT, gambarmenu TEXT, kategorimenu TEXT)")
     }
 
     override fun onUpgrade(MyDB: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
@@ -45,6 +53,18 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "Login.db", null, 1
         contentValues.put("logo", logo)
         contentValues.put("gambar", gambar)
         val result = MyDB.insert("warung", null, contentValues)
+        return result != -1L
+    }
+
+    fun insertMenu(idmenu: String, namamenu: String, hargamenu: String, kategorimenu: String, gambarmenu: String): Boolean {
+        val MyDB = this.writableDatabase
+        val contentValues = ContentValues()
+        contentValues.put("idmenu", idmenu)
+        contentValues.put("namamenu", namamenu)
+        contentValues.put("kategorimenu", kategorimenu)
+        contentValues.put("hargamenu", hargamenu)
+        contentValues.put("gambarmenu", gambarmenu)
+        val result = MyDB.insert("menu", null, contentValues)
         return result != -1L
     }
 

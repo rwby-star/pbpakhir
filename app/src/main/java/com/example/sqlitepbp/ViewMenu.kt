@@ -6,7 +6,6 @@ import android.database.Cursor
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.view.menu.MenuAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -23,15 +22,18 @@ class ViewMenu : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_view_menu)
 
+        DB = DBHelper(this)
         recyclerView = findViewById(R.id.recyclerViewMenu)
+        menuAdapter = MenuAdapter(this, DB.viewMenu())
 
         recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.adapter = menuAdapter
 
         btnBack = findViewById(R.id.btnBack)
-//        btnBack.setOnClickListener{
-//            val intent = Intent(this, CreateWarung::class.java)
-//            startActivity(intent)
-//        }
+        btnBack.setOnClickListener{
+            val intent = Intent(this, CreateMenu::class.java)
+            startActivity(intent)
+        }
 
         // Inisialisasi BottomNavigationView
         val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottomNavigationView)

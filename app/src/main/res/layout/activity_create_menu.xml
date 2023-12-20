@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:orientation="vertical"
+    tools:context=".CreateMenu">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/addData"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/poppins"
+            android:text="Tambah Menu."
+            android:textColor="@color/lavender"
+            android:textSize="24sp" />
+
+        <ImageView
+            android:id="@+id/crtmenu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/baseline_done_24"
+            android:layout_alignParentEnd="true"
+            android:layout_alignTop="@id/addData"
+            android:layout_marginEnd="6dp"/>
+
+        <EditText
+            android:id="@+id/crtidmenu"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:hint="ID Menu"
+            android:padding="12dp"
+            android:textSize="20sp"
+            android:layout_below="@id/addData"
+            android:background="@drawable/orange_border"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/poppins"
+            android:maxLines="1"/>
+
+        <EditText
+            android:id="@+id/crtnamamenu"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:hint="Nama Menu"
+            android:padding="12dp"
+            android:textSize="20sp"
+            android:layout_below="@id/crtidmenu"
+            android:background="@drawable/orange_border"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/poppins"
+            android:maxLines="1"/>
+
+        <EditText
+            android:id="@+id/crthargamenu"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:hint="Harga Menu"
+            android:padding="12dp"
+            android:textSize="20sp"
+            android:layout_below="@id/crtnamamenu"
+            android:background="@drawable/orange_border"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/poppins"
+            android:maxLines="1"/>
+
+        <EditText
+            android:id="@+id/crtkategori"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:hint="Kategori"
+            android:padding="12dp"
+            android:textSize="20sp"
+            android:layout_below="@id/crthargamenu"
+            android:background="@drawable/orange_border"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/poppins"
+            android:maxLines="1"/>
+
+        <ImageView
+            android:id="@+id/inputGambarMenu"
+            android:layout_width="350dp"
+            android:layout_height="200dp"
+            android:layout_centerHorizontal="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_launcher_foreground"
+            android:layout_below="@id/crtkategori" />
+
+        <Button
+            android:id="@+id/btnInputGambarMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/inputGambarMenu"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/poppins"
+            android:text="Upload Gambar"/>
+
+    </RelativeLayout>
+</ScrollView>
