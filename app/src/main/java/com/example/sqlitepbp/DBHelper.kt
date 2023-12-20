@@ -20,6 +20,7 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "Login.db", null, 1
     override fun onCreate(MyDB: SQLiteDatabase) {
         MyDB.execSQL("CREATE TABLE users(username TEXT PRIMARY KEY, password TEXT)")
         MyDB.execSQL("CREATE TABLE warung(idwarung TEXT PRIMARY KEY, namawarung TEXT, logo TEXT, gambar TEXT)")
+        MyDB.execSQL("create Table menu(idmenu TEXT primary key, namamenu TEXT, hargamenu TEXT, gambarmenu TEXT, kategorimenu TEXT, idwarung TEXT, foreign key (idwarung) references warung(idwarung))")
     }
 
     override fun onUpgrade(MyDB: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
@@ -50,6 +51,11 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "Login.db", null, 1
     fun viewWarung(): Cursor {
         val MyDB = this.writableDatabase
         return MyDB.rawQuery("SELECT * FROM warung", null)
+    }
+
+    fun viewMenu(): Cursor {
+        val MyDB = this.writableDatabase
+        return MyDB.rawQuery("SELECT * FROM menu", null)
     }
 
     fun getDataWarung(idwarung: String?): Cursor {

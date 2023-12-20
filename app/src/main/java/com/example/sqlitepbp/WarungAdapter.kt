@@ -20,7 +20,6 @@ class WarungAdapter(private val context: Context, private val cursor: Cursor) :
         val namaWarungTextView: TextView = itemView.findViewById(R.id.textViewNamaWarung)
         val imagelogo: ImageView = itemView.findViewById(R.id.imageviewlogo)
         val imagegambar: ImageView = itemView.findViewById(R.id.imageviewgambar)
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WarungViewHolder {
