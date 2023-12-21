@@ -151,4 +151,32 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "Login.db", null, 1
         val MyDB = this.writableDatabase
         return MyDB.rawQuery("SELECT * FROM menu WHERE idmenu = ?", arrayOf(idMenu))
     }
+
+    fun getMenuGambarById(idMenu: String): String? {
+        val db = this.readableDatabase
+        val cursor = db.rawQuery("SELECT gambarmenu FROM menu WHERE idmenu = ?", arrayOf(idMenu))
+        var gambarmenu: String? = null
+
+        if (cursor.moveToFirst()) {
+            gambarmenu = cursor.getString(cursor.getColumnIndex("gambarmenu"))
+        }
+
+        cursor.close()
+        return gambarmenu
+    }
+
+    fun updateMenu(idMenu: String, namaMenu: String, hargaMenu: String, kategoriMenu: String, gambarMenu: String): Boolean {
+        val MyDB = this.writableDatabase
+        val contentValues = ContentValues()
+        contentValues.put("namamenu", namaMenu)
+        contentValues.put("hargamenu",hargaMenu )
+        contentValues.put("kategorimenu", kategoriMenu)
+        contentValues.put("gambarmenu", gambarMenu)
+
+        val whereClause = "idmenu = ?"
+        val whereArgs = arrayOf(idMenu)
+
+        val result = MyDB.update("menu", contentValues, whereClause, whereArgs)
+        return result != -1
+    }
 }
