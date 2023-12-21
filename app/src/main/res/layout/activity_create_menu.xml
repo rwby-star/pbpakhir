@@ -71,18 +71,46 @@
             android:fontFamily="@font/poppins"
             android:maxLines="1"/>
 
-        <EditText
-            android:id="@+id/crtkategori"
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/kategoriSpinner"
+            android:layout_width="150dp"
             android:layout_height="60dp"
-            android:hint="Kategori"
+            android:hint="Pilih Kategori"
             android:padding="12dp"
             android:textSize="16sp"
             android:layout_below="@id/crthargamenu"
-            android:background="@drawable/orange_border"
             android:layout_marginTop="16dp"
             android:fontFamily="@font/poppins"
             android:maxLines="1"/>
+
+        <Spinner
+            android:id="@+id/kategoriMenu"
+            android:layout_width="150dp"
+            android:layout_height="40dp"
+            android:entries="@array/kategorimenu"
+            android:background="@drawable/orange_border"
+            android:layout_below="@id/kategoriSpinner"
+            android:layout_marginTop="5dp" />
+
+        <TextView
+            android:id="@+id/spinnerText"
+            android:layout_width="150dp"
+            android:layout_height="60dp"
+            android:hint="Pilih Warung"
+            android:padding="12dp"
+            android:textSize="16sp"
+            android:layout_below="@id/kategoriMenu"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/poppins"
+            android:maxLines="1"/>
+
+        <Spinner
+            android:id="@+id/spinnerWarung"
+            android:layout_width="150dp"
+            android:layout_height="40dp"
+            android:background="@drawable/orange_border"
+            android:layout_below="@id/spinnerText"
+            android:fontFamily="@font/poppins"/>
 
         <ImageView
             android:id="@+id/inputGambarMenu"
@@ -92,7 +120,7 @@
             android:layout_centerHorizontal="true"
             android:scaleType="centerCrop"
             android:src="@drawable/ic_launcher_foreground"
-            android:layout_below="@id/crtkategori" />
+            android:layout_below="@id/spinnerWarung" />
 
         <Button
             android:id="@+id/btnInputGambarMenu"

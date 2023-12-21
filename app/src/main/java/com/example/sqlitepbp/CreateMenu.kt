@@ -8,10 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.View
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.Toast
+import android.widget.*
 import java.io.*
 
 class CreateMenu : AppCompatActivity() {
@@ -25,8 +22,8 @@ class CreateMenu : AppCompatActivity() {
         val textidmenu = findViewById<EditText>(R.id.crtidmenu)
         val textnamamenu = findViewById<EditText>(R.id.crtnamamenu)
         val texthargamenu = findViewById<EditText>(R.id.crthargamenu)
-        val textkategorimenu = findViewById<EditText>(R.id.crtkategori)
-//        val previewImageMenu = findViewById<ImageView>(R.id.inputGambarMenu)
+        val textkategorimenu = findViewById<Spinner>(R.id.kategoriMenu)
+        val spinnerWarung = findViewById<Spinner>(R.id.spinnerWarung)
         val btnInputImageMenu = findViewById<Button>(R.id.btnInputGambarMenu)
         val btncrtmenu = findViewById<ImageView>(R.id.crtmenu)
 
@@ -36,17 +33,24 @@ class CreateMenu : AppCompatActivity() {
             openGalleryGambar()
         }
 
+        val idWarungList = DB.getIdWarung()
+
+        val adapterIDWarung = ArrayAdapter(this, android.R.layout.simple_spinner_item, idWarungList)
+        adapterIDWarung.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinnerWarung.adapter = adapterIDWarung
+
         btncrtmenu.setOnClickListener{
             val idMenu = textidmenu.text.toString()
             val namaMenu = textnamamenu.text.toString()
             val hargamenu = texthargamenu.text.toString()
-            val kategorimenu = textkategorimenu.text.toString()
+            val kategorimenu = textkategorimenu.selectedItem.toString()
             val gambarmenu = selectedImageUri.toString()
+            val spinnerMenu = spinnerWarung.selectedItem.toString()
 
-            if (idMenu.isEmpty() || namaMenu.isEmpty() || hargamenu.isEmpty() || kategorimenu.isEmpty() || gambarmenu.isEmpty()) {
+            if (idMenu.isEmpty() || namaMenu.isEmpty() || hargamenu.isEmpty() || kategorimenu.isEmpty() || gambarmenu.isEmpty() || spinnerMenu.isEmpty()) {
                 Toast.makeText(this, "Harap semua field diisi", Toast.LENGTH_SHORT).show()
             } else {
-                val insert = DB.insertMenu(idMenu, namaMenu, hargamenu, kategorimenu, gambarmenu)
+                val insert = DB.insertMenu(idMenu, namaMenu, hargamenu, kategorimenu, gambarmenu, spinnerMenu)
                 if (insert) {
                     Toast.makeText(this, "Registered successfully", Toast.LENGTH_SHORT).show()
                     val intent = Intent(applicationContext, ViewMenu::class.java)

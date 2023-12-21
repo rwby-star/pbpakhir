@@ -48,18 +48,26 @@
             android:layout_below="@+id/editTextNamaMenu"
             android:maxLines="1" />
 
-        <EditText
-            android:id="@+id/editTextKategoriMenu"
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/textViewkategoriSpinner"
+            android:layout_width="150dp"
             android:layout_height="60dp"
-            android:hint="Kategori Menu"
-            android:layout_marginTop="16dp"
+            android:hint="Pilih Kategori"
             android:padding="12dp"
             android:textSize="16sp"
-            android:background="@drawable/orange_border"
+            android:layout_below="@id/editTextHargaMenu"
+            android:layout_marginTop="16dp"
             android:fontFamily="@font/poppins"
-            android:layout_below="@+id/editTextHargaMenu"
-            android:maxLines="1" />
+            android:maxLines="1"/>
+
+        <Spinner
+            android:id="@+id/spinnerKategori"
+            android:layout_width="150dp"
+            android:layout_height="40dp"
+            android:entries="@array/kategorimenu"
+            android:background="@drawable/orange_border"
+            android:layout_below="@id/textViewkategoriSpinner"
+            android:layout_marginTop="5dp" />
 
         <ImageView
             android:id="@+id/inputgambarpreview"
@@ -69,7 +77,7 @@
             android:layout_centerHorizontal="true"
             android:scaleType="centerCrop"
             android:src="@drawable/ic_launcher_foreground"
-            android:layout_below="@id/editTextKategoriMenu" />
+            android:layout_below="@id/spinnerKategori" />
 
         <Button
             android:id="@+id/btnGambar"

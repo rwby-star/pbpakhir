@@ -16,6 +16,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import android.content.Context
 import android.view.View
+import android.widget.Spinner
 import android.widget.TextView
 import java.io.*
 
@@ -24,7 +25,7 @@ class EditMenu : AppCompatActivity() {
     private lateinit var editTextIdMenu: TextView
     private lateinit var editTextNamaMenu: EditText
     private lateinit var editTextHargaMenu: EditText
-    private lateinit var editTextKategoriMenu: EditText
+    private lateinit var editTextKategoriMenu: Spinner
     private lateinit var inputGambar: ImageView
     private lateinit var btnGambar: Button
     private lateinit var btnUpdate: Button
@@ -39,7 +40,7 @@ class EditMenu : AppCompatActivity() {
         editTextIdMenu = findViewById(R.id.editTextIdMenu)
         editTextNamaMenu = findViewById(R.id.editTextNamaMenu)
         editTextHargaMenu = findViewById(R.id.editTextHargaMenu)
-        editTextKategoriMenu = findViewById(R.id.editTextKategoriMenu)
+        editTextKategoriMenu = findViewById(R.id.spinnerKategori)
         inputGambar = findViewById(R.id.inputgambarpreview)
         btnGambar = findViewById(R.id.btnGambar)
         btnUpdate = findViewById(R.id.btnUpdate)
@@ -70,7 +71,7 @@ class EditMenu : AppCompatActivity() {
             editTextIdMenu.setText(menuData.getString(menuData.getColumnIndex("idmenu")))
             editTextNamaMenu.setText(menuData.getString(menuData.getColumnIndex("namamenu")))
             editTextHargaMenu.setText(menuData.getString(menuData.getColumnIndex("hargamenu")))
-            editTextKategoriMenu.setText(menuData.getString(menuData.getColumnIndex("kategorimenu")))
+//            editTextKategoriMenu.selectedItem.toString(menuData.getString(menuData.getColumnIndex("kategorimenu")))
 
             val gambar = menuData.getString(menuData.getColumnIndex("gambarmenu"))
 
@@ -110,7 +111,7 @@ class EditMenu : AppCompatActivity() {
         val idMenu = editTextIdMenu.text.toString()
         val namaMenu = editTextNamaMenu.text.toString()
         val hargaMenu = editTextHargaMenu.text.toString()
-        val kategoriMenu = editTextKategoriMenu.text.toString()
+        val kategoriMenu = editTextKategoriMenu.selectedItem.toString()
 
         // Inisialisasi dengan data sebelumnya
         var gambarmenu = dbHelper.getMenuGambarById(idMenu) ?: ""

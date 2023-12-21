@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Warmindo Inspirasi Indonesia</string>
+    <string-array name="kategorimenu">
+        <item>Makanan</item>
+        <item>Minuman</item>
+    </string-array>
 </resources>

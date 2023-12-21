@@ -33,32 +33,70 @@
             android:fontFamily="@font/poppins"
             android:layout_gravity="center"/>
 
-
-        <ImageView
-            android:id="@+id/imageViewGambarDetail"
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:src="@drawable/ic_launcher_foreground"
             android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            app:cardCornerRadius="8dp"
+            app:cardUseCompatPadding = "true">
 
-            android:adjustViewBounds="true" />
+            <ImageView
+                android:id="@+id/imageViewGambarDetail"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_launcher_foreground"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop"/>
 
-        <Button
-            android:id="@+id/buttonEdit"
-            android:layout_marginTop="16dp"
+        </androidx.cardview.widget.CardView>
+
+
+        <LinearLayout
             android:layout_width="match_parent"
+            android:orientation="horizontal"
             android:layout_height="wrap_content"
-            android:text="Edit"
-            android:fontFamily="@font/poppins"
-            android:onClick="editMenu" />
+            android:layout_marginTop="16dp">
 
-        <Button
-            android:id="@+id/buttonDelete"
+            <Button
+                android:id="@+id/buttonEdit"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Edit Warung"
+                android:fontFamily="@font/poppins"
+                android:onClick="editWarung" />
+
+            <Space
+                android:layout_width="16dp"
+                android:layout_height="wrap_content" />
+
+            <Button
+                android:id="@+id/buttonDelete"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Hapus Warung"
+                android:fontFamily="@font/poppins"
+                android:onClick="deleteWarung" />
+
+        </LinearLayout>
+
+        <!-- Tambahkan LinearLayout baru untuk tombol di bawah Edit dan Delete -->
+        <LinearLayout
             android:layout_width="match_parent"
+            android:orientation="horizontal"
             android:layout_height="wrap_content"
-            android:text="Delete"
-            android:fontFamily="@font/poppins"
-            android:onClick="deleteMenu" />
+            android:layout_marginTop="16dp">
+
+            <Button
+                android:id="@+id/buttonMenuWarung"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Lihat Menu"
+                android:fontFamily="@font/poppins"
+                android:onClick="buttonMenuWarung" />
+        </LinearLayout>
 
     </LinearLayout>
 </RelativeLayout>
