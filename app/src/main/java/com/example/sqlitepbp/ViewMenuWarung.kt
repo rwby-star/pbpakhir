@@ -16,7 +16,6 @@ class ViewMenuWarung : AppCompatActivity() {
     private lateinit var DB: DBHelper
     private lateinit var recyclerView: RecyclerView
     private lateinit var viewMenuWarungAdapter: ViewMenuWarungAdapter
-    private var idWarung: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,10 +23,10 @@ class ViewMenuWarung : AppCompatActivity() {
 
         DB = DBHelper(this)
         // Mendapatkan ID warung yang akan diambil dari intent
-        idWarung = intent.getStringExtra("ID_WARUNG")
+        val idWarung = intent.getStringExtra("ID_WARUNG")
 
         recyclerView = findViewById(R.id.recyclerViewMenuWarung)
-        viewMenuWarungAdapter = ViewMenuWarungAdapter(this, DB.viewMenuWarung())
+        viewMenuWarungAdapter = ViewMenuWarungAdapter(this, DB.viewMenuWarung(idWarung ?: ""))
 
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = viewMenuWarungAdapter

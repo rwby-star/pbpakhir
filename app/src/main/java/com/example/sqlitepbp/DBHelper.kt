@@ -214,13 +214,16 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "Login.db", null, 1
         return categoriesList
     }
 
-    fun viewMenuWarung(): Cursor {
+    fun viewMenuWarung(idWarung: String): Cursor {
         val MyDB = this.writableDatabase
-        return MyDB.rawQuery("SELECT menu.idmenu, menu.namamenu AS namamenu, menu.hargamenu AS hargamenu, menu.gambarmenu, menu.kategorimenu AS kategorimenu, menu.idwarung AS idwarung " +
-                "FROM menu " +
-                "INNER JOIN warung ON menu.idwarung = warung.idwarung " +
-                "WHERE menu.idwarung = ?" +
-                "ORDER BY menu.kategorimenu", null
+        return MyDB.rawQuery(
+            "SELECT *" +
+                    "FROM menu " +
+                    "INNER JOIN warung ON menu.idwarung = warung.idwarung " +
+                    "WHERE menu.idwarung = ?" +
+                    "ORDER BY menu.kategorimenu",
+            arrayOf(idWarung)
         )
     }
+
 }

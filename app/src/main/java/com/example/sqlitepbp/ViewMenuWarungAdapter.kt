@@ -26,7 +26,7 @@ class ViewMenuWarungAdapter(private val context: Context, private val cursor: Cu
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MenuWarungViewHolder {
-        val view = LayoutInflater.from(context).inflate(R.layout.item_menu, parent, false)
+        val view = LayoutInflater.from(context).inflate(R.layout.item_menu_warung, parent, false)
         return MenuWarungViewHolder(view)
     }
 
