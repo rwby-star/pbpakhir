@@ -53,7 +53,7 @@ class ViewWarung : AppCompatActivity() {
                 }
                 R.id.btnTable -> {
                     // Navigasi ke halaman Meja
-                    val intent = Intent(this, MejaActivity::class.java) // Gantikan dengan nama Activity Meja Anda
+                    val intent = Intent(this, ViewMeja::class.java) // Gantikan dengan nama Activity Meja Anda
                     startActivity(intent)
                     true
                 }

@@ -3,6 +3,7 @@ import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import android.view.Menu
 
 class DBHelper(context: Context) : SQLiteOpenHelper(context, "Login.db", null, 1) {
 
@@ -28,6 +29,7 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "Login.db", null, 1
     override fun onCreate(MyDB: SQLiteDatabase) {
         MyDB.execSQL("CREATE TABLE users(username TEXT PRIMARY KEY, password TEXT)")
         MyDB.execSQL("CREATE TABLE warung(idwarung TEXT PRIMARY KEY, namawarung TEXT, logo TEXT, gambar TEXT)")
+        MyDB.execSQL("CREATE TABLE meja(idmeja TEXT, idwarung TEXT, status TEXT, foreign key (idwarung) references warung(idwarung))")
         MyDB.execSQL("CREATE TABLE menu(idmenu TEXT primary key, namamenu TEXT, hargamenu TEXT, gambarmenu TEXT, kategorimenu TEXT, idwarung TEXT, foreign key (idwarung) references warung(idwarung))")
     }
 
@@ -69,6 +71,16 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "Login.db", null, 1
         return result != -1L
     }
 
+    fun insertMeja(idmeja: String, idwarung: String): Boolean {
+        val MyDB = this.writableDatabase
+        val contentValues = ContentValues()
+        contentValues.put("idmeja", idmeja)
+        contentValues.put("idwarung", idwarung)
+        contentValues.put("status", "Tersedia")
+        val result = MyDB.insert("meja", null, contentValues)
+        return result != -1L
+    }
+
     fun viewWarung(): Cursor {
         val MyDB = this.writableDatabase
         return MyDB.rawQuery("SELECT * FROM warung", null)
@@ -77,6 +89,11 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "Login.db", null, 1
     fun viewMenu(): Cursor {
         val MyDB = this.writableDatabase
         return MyDB.rawQuery("SELECT * FROM menu", null)
+    }
+
+    fun viewMeja(): Cursor {
+        val MyDB = this.writableDatabase
+        return MyDB.rawQuery("SELECT * FROM meja", null)
     }
 
     fun getDataWarung(idwarung: String?): Cursor {
@@ -195,5 +212,15 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "Login.db", null, 1
         }
         cursor.close()
         return categoriesList
+    }
+
+    fun viewMenuWarung(): Cursor {
+        val MyDB = this.writableDatabase
+        return MyDB.rawQuery("SELECT menu.idmenu, menu.namamenu AS namamenu, menu.hargamenu AS hargamenu, menu.gambarmenu, menu.kategorimenu AS kategorimenu, menu.idwarung AS idwarung " +
+                "FROM menu " +
+                "INNER JOIN warung ON menu.idwarung = warung.idwarung " +
+                "WHERE menu.idwarung = ?" +
+                "ORDER BY menu.kategorimenu", null
+        )
     }
 }

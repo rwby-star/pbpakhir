@@ -15,6 +15,20 @@
         android:theme="@style/Theme.SQLitePBP"
         tools:targetApi="31">
         <activity
+            android:name=".CreateMeja"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ViewMeja"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".ViewMenuWarung"
             android:exported="false">
             <meta-data
