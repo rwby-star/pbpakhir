@@ -30,18 +30,18 @@ class MenuAdapter(private val context: Context, private val cursor: Cursor) :
         return MenuViewHolder(view)
     }
 
-    // Interface untuk listener klik item warung
-//    interface OnWarungItemClickListener {
-//        fun onWarungItemClick(idWarung: String)
-//    }
+    //Interface untuk listener klik item warung
+    interface OnMenuItemClickListener {
+        fun onMenuItemClick(idMenu: String)
+    }
 
-    // Variabel listener
-//    private var warungItemClickListener: OnWarungItemClickListener? = null
-//
-//    // Metode untuk mengatur listener
-//    fun setOnWarungItemClickListener(listener: OnWarungItemClickListener) {
-//        warungItemClickListener = listener
-//    }
+    //Variabel listener
+    private var menuItemClickListener: OnMenuItemClickListener? = null
+
+    // Metode untuk mengatur listener
+    fun setOnMenuItemClickListener(listener: OnMenuItemClickListener) {
+        menuItemClickListener = listener
+    }
 
     override fun onBindViewHolder(holder: MenuViewHolder, position: Int) {
         if (!cursor.moveToPosition(position)) {
@@ -56,9 +56,7 @@ class MenuAdapter(private val context: Context, private val cursor: Cursor) :
 
         holder.namaMenuTextView.text = "$namaMenu"
         holder.kategoriMenu.text = "$kategoriMenu"
-        holder.hargaMenu.text = "$hargaMenu"
-//        holder.logoTextView.text = "Logo: $logo"
-//        holder.gambarTextView.text = "Gambar: $gambar"
+        holder.hargaMenu.text = "Rp $hargaMenu,00,-"
         // Load and display the image using Glide with caching
         Glide.with(context)
             .load(gambarMenu)
@@ -68,10 +66,10 @@ class MenuAdapter(private val context: Context, private val cursor: Cursor) :
 
         Log.d("WarungAdapter", "Image URL: ${gambarMenu}")
 
-        // Menambahkan listener klik ke setiap item
-//        holder.itemView.setOnClickListener {
-//            warungItemClickListener?.onWarungItemClick(idWarung)
-//        }
+         //Menambahkan listener klik ke setiap item
+        holder.itemView.setOnClickListener {
+            menuItemClickListener?.onMenuItemClick(idMenu)
+        }
     }
 
     override fun getItemCount(): Int {

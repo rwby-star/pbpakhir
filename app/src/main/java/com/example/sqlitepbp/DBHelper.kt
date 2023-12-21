@@ -114,4 +114,15 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "Login.db", null, 1
         val cursor = MyDB.rawQuery("SELECT * FROM users WHERE username = ? AND password = ?", arrayOf(username, password))
         return cursor.count > 0
     }
+
+    fun hapusMenu(id: String) {
+        val db = this.writableDatabase
+
+        db.delete("menu", "idmenu = ?", arrayOf(id))
+    }
+
+    fun getDataMenu(idMenu: String?): Cursor {
+        val MyDB = this.writableDatabase
+        return MyDB.rawQuery("SELECT * FROM menu WHERE idmenu = ?", arrayOf(idMenu))
+    }
 }

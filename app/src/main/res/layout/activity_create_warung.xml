@@ -19,7 +19,7 @@
             android:layout_alignParentTop="true"
             android:layout_marginTop="16dp"
             android:fontFamily="@font/poppins"
-            android:text="Add Data."
+            android:text="Warung Baru."
             android:textColor="@color/lavender"
             android:textSize="24sp" />
 
@@ -38,7 +38,7 @@
             android:layout_height="60dp"
             android:hint="ID Warung"
             android:padding="12dp"
-            android:textSize="20sp"
+            android:textSize="16sp"
             android:layout_below="@id/addData"
             android:background="@drawable/orange_border"
             android:layout_marginTop="16dp"
@@ -51,7 +51,7 @@
             android:layout_height="60dp"
             android:hint="Nama Warung"
             android:padding="12dp"
-            android:textSize="20sp"
+            android:textSize="16sp"
             android:layout_below="@id/crtidwarung"
             android:background="@drawable/orange_border"
             android:layout_marginTop="16dp"

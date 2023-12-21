@@ -12,6 +12,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
+import java.io.*
 
 class CreateMenu : AppCompatActivity() {
 
@@ -57,6 +58,29 @@ class CreateMenu : AppCompatActivity() {
         }
     }
 
+    private fun copyImageToInternalStorage(uri: Uri?): Uri? {
+        if (uri == null) return null
+
+        val inputStream: InputStream? = contentResolver.openInputStream(uri)
+        val file = File(filesDir, "${System.currentTimeMillis()}.jpg") // Membuat nama file unik
+
+        try {
+            val outputStream = FileOutputStream(file)
+            val buf = ByteArray(1024)
+            var len: Int
+            while (inputStream?.read(buf).also { len = it!! } != -1) {
+                outputStream.write(buf, 0, len)
+            }
+            outputStream.close()
+            inputStream?.close()
+        } catch (e: IOException) {
+            e.printStackTrace()
+            return null
+        }
+
+        return Uri.fromFile(file)
+    }
+
     var selectedImageUri: Uri? = null
 
     private val PICK_IMAGE_REQUEST = 1
@@ -72,8 +96,7 @@ class CreateMenu : AppCompatActivity() {
         if (resultCode == Activity.RESULT_OK && data != null) {
             when (requestCode) {
                 PICK_IMAGE_REQUEST -> {
-                    // Ini untuk pemilihan gambar
-                    selectedImageUri = data.data // Memperbarui variabel kelas dengan URI gambar yang dipilih
+                    selectedImageUri = copyImageToInternalStorage(data.data)
                     val previewGambar = findViewById<ImageView>(R.id.inputGambarMenu)
                     previewGambar.setImageURI(selectedImageUri)
                     previewGambar.visibility = View.VISIBLE

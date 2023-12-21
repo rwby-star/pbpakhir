@@ -60,7 +60,14 @@ class ViewMenu : AppCompatActivity() {
                 else -> false
             }
         }
-
+        menuAdapter.setOnMenuItemClickListener(object : MenuAdapter.OnMenuItemClickListener {
+            override fun onMenuItemClick(idMenu: String) {
+                // Navigasi ke DetailMenu dengan mengirimkan ID MENU
+                val intent = Intent(this@ViewMenu, DetailMenu::class.java)
+                intent.putExtra("ID_MENU", idMenu)
+                startActivity(intent)
+            }
+        })
 
 
 

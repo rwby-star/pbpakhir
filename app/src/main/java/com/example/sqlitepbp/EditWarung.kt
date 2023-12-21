@@ -16,11 +16,12 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import android.content.Context
 import android.view.View
+import android.widget.TextView
 import java.io.*
 
 class EditWarung : AppCompatActivity() {
 
-    private lateinit var editTextIdWarung: EditText
+    private lateinit var editTextIdWarung: TextView
     private lateinit var editTextNamaWarung: EditText
     private lateinit var inputLogo: ImageView
     private lateinit var inputGambar: ImageView
@@ -78,27 +79,6 @@ class EditWarung : AppCompatActivity() {
             editTextNamaWarung.setText(warungData.getString(warungData.getColumnIndex("namawarung")))
         }
     }
-
-//    private fun updateWarungData() {
-//        val idWarung = editTextIdWarung.text.toString()
-//        val namaWarung = editTextNamaWarung.text.toString()
-//        val logo = selectedLogoUri.toString()
-//        val gambar = selectedImageUri.toString()
-//
-//        // Panggil fungsi untuk memperbarui data warung di database
-//        val isUpdated = dbHelper.updateWarung(idWarung, namaWarung, logo, gambar)
-//
-//        if (isUpdated) {
-//            val viewWarungIntent = Intent(this, ViewWarung::class.java)
-//            startActivity(viewWarungIntent)
-//            finish() // Kembali ke halaman sebelumnya setelah pembaruan berhasil
-//        } else {
-//            // Gagal memperbarui data warung
-//            // Lakukan sesuatu jika pembaruan gagal
-//            // Misalnya, tampilkan pesan kesalahan
-//            Toast.makeText(this, "Gagal memperbarui data warung", Toast.LENGTH_SHORT).show()
-//        }
-//    }
 
     private fun copyImageToInternalStorage(uri: Uri?): Uri? {
         if (uri == null) return null
