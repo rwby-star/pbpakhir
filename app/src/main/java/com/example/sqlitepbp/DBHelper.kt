@@ -97,6 +97,32 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "Login.db", null, 1
         return result != -1
     }
 
+    fun getWarungLogoById(idWarung: String): String? {
+        val db = this.readableDatabase
+        val cursor = db.rawQuery("SELECT logo FROM warung WHERE idwarung = ?", arrayOf(idWarung))
+        var logo: String? = null
+
+        if (cursor.moveToFirst()) {
+            logo = cursor.getString(cursor.getColumnIndex("logo"))
+        }
+
+        cursor.close()
+        return logo
+    }
+
+    fun getWarungGambarById(idWarung: String): String? {
+        val db = this.readableDatabase
+        val cursor = db.rawQuery("SELECT gambar FROM warung WHERE idwarung = ?", arrayOf(idWarung))
+        var gambar: String? = null
+
+        if (cursor.moveToFirst()) {
+            gambar = cursor.getString(cursor.getColumnIndex("gambar"))
+        }
+
+        cursor.close()
+        return gambar
+    }
+
     fun hapusWarung(id: String) {
         val db = this.writableDatabase
 

@@ -77,6 +77,23 @@ class EditWarung : AppCompatActivity() {
         if (warungData != null && warungData.moveToFirst()) {
             editTextIdWarung.setText(warungData.getString(warungData.getColumnIndex("idwarung")))
             editTextNamaWarung.setText(warungData.getString(warungData.getColumnIndex("namawarung")))
+
+            val logo = warungData.getString(warungData.getColumnIndex("logo"))
+            val gambar = warungData.getString(warungData.getColumnIndex("gambar"))
+
+            Glide.with(this)
+                .load(logo)
+                .placeholder(R.drawable.placeholder_image)
+                .into(inputLogo)
+
+            Log.d("EditWarung", "Image URL: $logo")
+
+            Glide.with(this)
+                .load(gambar)
+                .placeholder(R.drawable.placeholder_image)
+                .into(inputGambar)
+
+            Log.d("EditWarung", "Image URL: $gambar")
         }
     }
 
@@ -103,16 +120,49 @@ class EditWarung : AppCompatActivity() {
         return Uri.fromFile(file)
     }
 
+//    private fun updateWarungData() {
+//        val idWarung = editTextIdWarung.text.toString()
+//        val namaWarung = editTextNamaWarung.text.toString()
+//
+//        // Menyalin gambar ke penyimpanan internal sebelum menyimpan URI ke database
+//        val logoInternalUri = copyImageToInternalStorage(selectedLogoUri)
+//        val gambarInternalUri = copyImageToInternalStorage(selectedImageUri)
+//
+//        val logo = logoInternalUri?.toString() ?: ""
+//        val gambar = gambarInternalUri?.toString() ?: ""
+//
+//        // Panggil fungsi untuk memperbarui data warung di database
+//        val isUpdated = dbHelper.updateWarung(idWarung, namaWarung, logo, gambar)
+//
+//        if (isUpdated) {
+//            val viewWarungIntent = Intent(this, ViewWarung::class.java)
+//            startActivity(viewWarungIntent)
+//            finish() // Kembali ke halaman sebelumnya setelah pembaruan berhasil
+//        } else {
+//            // Gagal memperbarui data warung
+//            Toast.makeText(this, "Gagal memperbarui data warung", Toast.LENGTH_SHORT).show()
+//        }
+//    }
+
     private fun updateWarungData() {
         val idWarung = editTextIdWarung.text.toString()
         val namaWarung = editTextNamaWarung.text.toString()
 
-        // Menyalin gambar ke penyimpanan internal sebelum menyimpan URI ke database
-        val logoInternalUri = copyImageToInternalStorage(selectedLogoUri)
-        val gambarInternalUri = copyImageToInternalStorage(selectedImageUri)
+        // Inisialisasi dengan data sebelumnya
+        var logo = dbHelper.getWarungLogoById(idWarung) ?: ""
+        var gambar = dbHelper.getWarungGambarById(idWarung) ?: ""
 
-        val logo = logoInternalUri?.toString() ?: ""
-        val gambar = gambarInternalUri?.toString() ?: ""
+        // Jika user memilih logo baru, salin ke penyimpanan internal
+        if (selectedLogoUri != null) {
+            val logoInternalUri = copyImageToInternalStorage(selectedLogoUri)
+            logo = logoInternalUri?.toString() ?: logo
+        }
+
+        // Jika user memilih gambar baru, salin ke penyimpanan internal
+        if (selectedImageUri != null) {
+            val gambarInternalUri = copyImageToInternalStorage(selectedImageUri)
+            gambar = gambarInternalUri?.toString() ?: gambar
+        }
 
         // Panggil fungsi untuk memperbarui data warung di database
         val isUpdated = dbHelper.updateWarung(idWarung, namaWarung, logo, gambar)

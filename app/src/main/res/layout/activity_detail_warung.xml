@@ -33,12 +33,14 @@
             android:fontFamily="@font/poppins"
             android:layout_gravity="center"/>
 
+
         <ImageView
             android:id="@+id/imageViewGambarDetail"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:src="@drawable/ic_launcher_foreground"
             android:layout_gravity="center_horizontal"
+
             android:adjustViewBounds="true" />
 
         <Button
