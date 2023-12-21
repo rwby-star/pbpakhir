@@ -16,6 +16,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import android.content.Context
 import android.view.View
+import java.io.*
 
 class EditWarung : AppCompatActivity() {
 
@@ -67,43 +68,71 @@ class EditWarung : AppCompatActivity() {
         }
     }
 
-    private fun fillFormWithWarungData(idWarung: String?) {
+    private fun fillFormWithWarungData(idwarung: String?) {
         // Dapatkan data warung berdasarkan ID dari database
-        val warungData = dbHelper.getDataWarung(idWarung)
+        val warungData = dbHelper.getDataWarung(idwarung)
 
         // Isi formulir dengan data warung
         if (warungData != null && warungData.moveToFirst()) {
             editTextIdWarung.setText(warungData.getString(warungData.getColumnIndex("idwarung")))
             editTextNamaWarung.setText(warungData.getString(warungData.getColumnIndex("namawarung")))
-
-//            // Ambil URI gambar dan logo dari data warung
-//            val logoUriString = warungData.getString(warungData.getColumnIndex("logo"))
-//            val gambarUriString = warungData.getString(warungData.getColumnIndex("gambar"))
-//
-//            // Jika URI tidak null atau kosong, tampilkan gambar di ImageView
-//            if (logoUriString != null && logoUriString.isNotEmpty()) {
-//                Glide.with(this)
-//                    .load(selectedLogoUri)
-//                    .placeholder(R.drawable.circle_shape)
-//                    .diskCacheStrategy(DiskCacheStrategy.NONE)
-//                    .into(inputLogo)
-//            }
-//
-//            if (gambarUriString != null && gambarUriString.isNotEmpty()) {
-//                Glide.with(this)
-//                    .load(selectedImageUri)
-//                    .placeholder(R.drawable.ic_launcher_background)
-//                    .diskCacheStrategy(DiskCacheStrategy.NONE)
-//                    .into(inputGambar)
-//            }
         }
+    }
+
+//    private fun updateWarungData() {
+//        val idWarung = editTextIdWarung.text.toString()
+//        val namaWarung = editTextNamaWarung.text.toString()
+//        val logo = selectedLogoUri.toString()
+//        val gambar = selectedImageUri.toString()
+//
+//        // Panggil fungsi untuk memperbarui data warung di database
+//        val isUpdated = dbHelper.updateWarung(idWarung, namaWarung, logo, gambar)
+//
+//        if (isUpdated) {
+//            val viewWarungIntent = Intent(this, ViewWarung::class.java)
+//            startActivity(viewWarungIntent)
+//            finish() // Kembali ke halaman sebelumnya setelah pembaruan berhasil
+//        } else {
+//            // Gagal memperbarui data warung
+//            // Lakukan sesuatu jika pembaruan gagal
+//            // Misalnya, tampilkan pesan kesalahan
+//            Toast.makeText(this, "Gagal memperbarui data warung", Toast.LENGTH_SHORT).show()
+//        }
+//    }
+
+    private fun copyImageToInternalStorage(uri: Uri?): Uri? {
+        if (uri == null) return null
+
+        val inputStream: InputStream? = contentResolver.openInputStream(uri)
+        val file = File(filesDir, "${System.currentTimeMillis()}.jpg") // Membuat nama file unik
+
+        try {
+            val outputStream = FileOutputStream(file)
+            val buf = ByteArray(1024)
+            var len: Int
+            while (inputStream?.read(buf).also { len = it!! } != -1) {
+                outputStream.write(buf, 0, len)
+            }
+            outputStream.close()
+            inputStream?.close()
+        } catch (e: IOException) {
+            e.printStackTrace()
+            return null
+        }
+
+        return Uri.fromFile(file)
     }
 
     private fun updateWarungData() {
         val idWarung = editTextIdWarung.text.toString()
         val namaWarung = editTextNamaWarung.text.toString()
-        val logo = selectedLogoUri.toString()
-        val gambar = selectedImageUri.toString()
+
+        // Menyalin gambar ke penyimpanan internal sebelum menyimpan URI ke database
+        val logoInternalUri = copyImageToInternalStorage(selectedLogoUri)
+        val gambarInternalUri = copyImageToInternalStorage(selectedImageUri)
+
+        val logo = logoInternalUri?.toString() ?: ""
+        val gambar = gambarInternalUri?.toString() ?: ""
 
         // Panggil fungsi untuk memperbarui data warung di database
         val isUpdated = dbHelper.updateWarung(idWarung, namaWarung, logo, gambar)
@@ -114,11 +143,10 @@ class EditWarung : AppCompatActivity() {
             finish() // Kembali ke halaman sebelumnya setelah pembaruan berhasil
         } else {
             // Gagal memperbarui data warung
-            // Lakukan sesuatu jika pembaruan gagal
-            // Misalnya, tampilkan pesan kesalahan
             Toast.makeText(this, "Gagal memperbarui data warung", Toast.LENGTH_SHORT).show()
         }
     }
+
 
     var selectedImageUri: Uri? = null
     var selectedLogoUri: Uri? = null

@@ -62,10 +62,10 @@ class ViewWarung : AppCompatActivity() {
         }
 
         warungAdapter.setOnWarungItemClickListener(object : WarungAdapter.OnWarungItemClickListener {
-            override fun onWarungItemClick(idWarung: String) {
+            override fun onWarungItemClick(idwarung: String) {
                 // Navigasi ke DetailActivity dengan mengirimkan ID Warung
                 val intent = Intent(this@ViewWarung, DetailWarung::class.java)
-                intent.putExtra("ID_WARUNG", idWarung)
+                intent.putExtra("ID_WARUNG", idwarung)
                 startActivity(intent)
             }
         })
