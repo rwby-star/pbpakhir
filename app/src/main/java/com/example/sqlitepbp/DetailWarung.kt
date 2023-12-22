@@ -28,6 +28,7 @@ class DetailWarung : AppCompatActivity() {
     private lateinit var buttonEdit: Button
     private lateinit var buttonDelete: Button
     private lateinit var buttonMenuWarung: Button
+    private lateinit var buttonMejaWarung: Button
     private lateinit var dbHelper: DBHelper
 
     private var idWarung: String? = null
@@ -42,6 +43,7 @@ class DetailWarung : AppCompatActivity() {
         previewGambar = findViewById(R.id.imageViewGambarDetail)
         buttonEdit = findViewById(R.id.buttonEdit)
         buttonMenuWarung = findViewById(R.id.buttonMenuWarung)
+        buttonMejaWarung = findViewById(R.id.buttonMejaWarung)
         buttonDelete = findViewById(R.id.buttonDelete)
         dbHelper = DBHelper(this)
 
@@ -71,6 +73,12 @@ class DetailWarung : AppCompatActivity() {
         // Pindah ke Halaman ViewMenuWarung
         buttonMenuWarung.setOnClickListener{
             val intent = Intent(this@DetailWarung, ViewMenuWarung::class.java)
+            intent.putExtra("ID_WARUNG", idWarung)
+            startActivity(intent)
+        }
+
+        buttonMejaWarung.setOnClickListener{
+            val intent = Intent(this@DetailWarung, ViewMejaWarung::class.java)
             intent.putExtra("ID_WARUNG", idWarung)
             startActivity(intent)
         }

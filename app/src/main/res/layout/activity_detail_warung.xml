@@ -85,7 +85,7 @@
         <!-- Tambahkan LinearLayout baru untuk tombol di bawah Edit dan Delete -->
         <LinearLayout
             android:layout_width="match_parent"
-            android:orientation="horizontal"
+            android:orientation="vertical"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp">
 
@@ -96,6 +96,14 @@
                 android:text="Lihat Menu"
                 android:fontFamily="@font/poppins"
                 android:onClick="buttonMenuWarung" />
+
+            <Button
+                android:id="@+id/buttonMejaWarung"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Lihat Meja"
+                android:fontFamily="@font/poppins"
+                android:onClick="buttonMejaWarung" />
         </LinearLayout>
 
     </LinearLayout>

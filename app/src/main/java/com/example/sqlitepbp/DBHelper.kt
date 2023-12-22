@@ -235,4 +235,16 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "Login.db", null, 1
             arrayOf(idWarung)
         )
     }
+
+    fun viewMejaWarung(idWarung: String): Cursor {
+        val MyDB = this.writableDatabase
+        return MyDB.rawQuery(
+            "SELECT *" +
+                    "FROM meja " +
+                    "INNER JOIN warung ON meja.idwarung = warung.idwarung " +
+                    "WHERE meja.idwarung = ?" +
+                    "ORDER BY meja.status",
+            arrayOf(idWarung)
+        )
+    }
 }
