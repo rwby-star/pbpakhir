@@ -59,5 +59,13 @@ class ViewMeja : AppCompatActivity() {
                 else -> false
             }
         }
+        mejaAdapter.setOnMejaItemClickListener(object : MejaAdapter.OnMejaItemClickListener {
+            override fun onMejaItemClick(idMeja: String) {
+                // Navigasi ke DetailActivity dengan mengirimkan ID Warung
+                val intent = Intent(this@ViewMeja, MejaDetail::class.java)
+                intent.putExtra("ID_MEJA", idMeja)
+                startActivity(intent)
+            }
+        })
     }
 }

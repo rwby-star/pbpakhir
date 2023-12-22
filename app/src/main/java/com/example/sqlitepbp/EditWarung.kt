@@ -42,8 +42,6 @@ class EditWarung : AppCompatActivity() {
         editTextNamaWarung = findViewById(R.id.editTextNamaWarung)
         inputLogo = findViewById(R.id.inputlogopreview)
         inputGambar = findViewById(R.id.inputgambarpreview)
-//        editTextLogo = findViewById(R.id.editTextLogo)
-//        editTextGambar = findViewById(R.id.editTextGambar)
         btnLogo = findViewById(R.id.btnLogo)
         btnGambar = findViewById(R.id.btnGambar)
         btnUpdate = findViewById(R.id.btnUpdate)
@@ -120,30 +118,6 @@ class EditWarung : AppCompatActivity() {
         return Uri.fromFile(file)
     }
 
-//    private fun updateWarungData() {
-//        val idWarung = editTextIdWarung.text.toString()
-//        val namaWarung = editTextNamaWarung.text.toString()
-//
-//        // Menyalin gambar ke penyimpanan internal sebelum menyimpan URI ke database
-//        val logoInternalUri = copyImageToInternalStorage(selectedLogoUri)
-//        val gambarInternalUri = copyImageToInternalStorage(selectedImageUri)
-//
-//        val logo = logoInternalUri?.toString() ?: ""
-//        val gambar = gambarInternalUri?.toString() ?: ""
-//
-//        // Panggil fungsi untuk memperbarui data warung di database
-//        val isUpdated = dbHelper.updateWarung(idWarung, namaWarung, logo, gambar)
-//
-//        if (isUpdated) {
-//            val viewWarungIntent = Intent(this, ViewWarung::class.java)
-//            startActivity(viewWarungIntent)
-//            finish() // Kembali ke halaman sebelumnya setelah pembaruan berhasil
-//        } else {
-//            // Gagal memperbarui data warung
-//            Toast.makeText(this, "Gagal memperbarui data warung", Toast.LENGTH_SHORT).show()
-//        }
-//    }
-
     private fun updateWarungData() {
         val idWarung = editTextIdWarung.text.toString()
         val namaWarung = editTextNamaWarung.text.toString()
@@ -170,10 +144,11 @@ class EditWarung : AppCompatActivity() {
         if (isUpdated) {
             val viewWarungIntent = Intent(this, ViewWarung::class.java)
             startActivity(viewWarungIntent)
+            Toast.makeText(this, "Data Warung Berhasil Diperbarui", Toast.LENGTH_SHORT).show()
             finish() // Kembali ke halaman sebelumnya setelah pembaruan berhasil
         } else {
             // Gagal memperbarui data warung
-            Toast.makeText(this, "Gagal memperbarui data warung", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Gagal Memperbarui Data Warung", Toast.LENGTH_SHORT).show()
         }
     }
 

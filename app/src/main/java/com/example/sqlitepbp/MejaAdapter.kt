@@ -29,7 +29,7 @@ class MejaAdapter(private val context: Context, private val cursor: Cursor) :
 
     //Interface untuk listener klik item warung
     interface OnMejaItemClickListener {
-        fun onMejaItemClick(idMenu: String)
+        fun onMejaItemClick(idMeja: String)
     }
 
     //Variabel listener

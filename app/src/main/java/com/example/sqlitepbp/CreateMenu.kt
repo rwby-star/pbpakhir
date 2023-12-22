@@ -48,15 +48,15 @@ class CreateMenu : AppCompatActivity() {
             val spinnerMenu = spinnerWarung.selectedItem.toString()
 
             if (idMenu.isEmpty() || namaMenu.isEmpty() || hargamenu.isEmpty() || kategorimenu.isEmpty() || gambarmenu.isEmpty() || spinnerMenu.isEmpty()) {
-                Toast.makeText(this, "Harap semua field diisi", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Harap Semua Kolom Diisi", Toast.LENGTH_SHORT).show()
             } else {
                 val insert = DB.insertMenu(idMenu, namaMenu, hargamenu, kategorimenu, gambarmenu, spinnerMenu)
                 if (insert) {
-                    Toast.makeText(this, "Registered successfully", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Data Menu Berhasil Ditambahkan", Toast.LENGTH_SHORT).show()
                     val intent = Intent(applicationContext, ViewMenu::class.java)
                     startActivity(intent)
                 } else {
-                    Toast.makeText(this, "Registration failed", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Gagal Menambahkan Data Menu", Toast.LENGTH_SHORT).show()
                 }
             }
         }

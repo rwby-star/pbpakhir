@@ -47,11 +47,11 @@ class CreateWarung : AppCompatActivity() {
             } else {
                 val insert = DB.insertWarung(idWarung, namaWarung, logo, gambar)
                 if (insert) {
-                    Toast.makeText(this, "Registered successfully", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Data Warung Berhasil Ditambahkan", Toast.LENGTH_SHORT).show()
                     val intent = Intent(applicationContext, ViewWarung::class.java)
                     startActivity(intent)
                 } else {
-                    Toast.makeText(this, "Registration failed", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Gagal Menambahkan Data Warung", Toast.LENGTH_SHORT).show()
                 }
             }
         }

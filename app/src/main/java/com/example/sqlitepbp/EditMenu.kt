@@ -128,10 +128,11 @@ class EditMenu : AppCompatActivity() {
         if (isUpdated) {
             val viewMenuIntent = Intent(this, ViewMenu::class.java)
             startActivity(viewMenuIntent)
+            Toast.makeText(this, "Berhasil Memperbarui Data Menu", Toast.LENGTH_SHORT).show()
             finish() // Kembali ke halaman sebelumnya setelah pembaruan berhasil
         } else {
             // Gagal memperbarui data warung
-            Toast.makeText(this, "Gagal memperbarui data warung", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Gagal Memperbarui Data Menu", Toast.LENGTH_SHORT).show()
         }
     }
 

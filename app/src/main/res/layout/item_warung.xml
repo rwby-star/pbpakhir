@@ -18,7 +18,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="16sp"
-        android:text="sfssf"
+        android:text="ID Warung"
         android:textStyle="bold"
         android:textColor="@color/black"
         android:layout_toEndOf="@+id/imageviewlogo" />
@@ -28,7 +28,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toEndOf="@+id/imageviewlogo"
-        android:text="sfsfsfs"
+        android:text="Nama Warung"
         android:layout_below="@+id/textViewIdWarung"
         android:textColor="@color/black"
         android:textStyle="bold"

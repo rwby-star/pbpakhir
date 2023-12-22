@@ -35,24 +35,24 @@ class MainActivity : AppCompatActivity() {
             val repass = repassword.text.toString()
 
             if (user.isEmpty() || pass.isEmpty() || repass.isEmpty()) {
-                Toast.makeText(this, "Please enter all the fields", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Semua Kolom Harus Diisi", Toast.LENGTH_SHORT).show()
             } else {
                 if (pass == repass) {
                     val checkuser = DB.checkUsername(user)
                     if (!checkuser) {
                         val insert = DB.insertData(user, pass)
                         if (insert) {
-                            Toast.makeText(this, "Registered successfully", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this, "Registrasi Berhasil", Toast.LENGTH_SHORT).show()
                             val intent = Intent(applicationContext, LoginActivity::class.java)
                             startActivity(intent)
                         } else {
-                            Toast.makeText(this, "Registration failed", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this, "Registrasi Gagal", Toast.LENGTH_SHORT).show()
                         }
                     } else {
-                        Toast.makeText(this, "User already exists! please sign in", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, "Akun yang Sama Ditemukan, Harap Login !", Toast.LENGTH_SHORT).show()
                     }
                 } else {
-                    Toast.makeText(this, "Passwords not matching", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Password Tidak Sama", Toast.LENGTH_SHORT).show()
                 }
             }
         }

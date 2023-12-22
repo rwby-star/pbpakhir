@@ -32,15 +32,15 @@ class LoginActivity : AppCompatActivity() {
             val pass = password.text.toString()
 
             if (user.isEmpty() || pass.isEmpty()) {
-                Toast.makeText(this, "Please enter all the fields", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Semua Kolom Harus Diisi", Toast.LENGTH_SHORT).show()
             } else {
                 val checkUserPass = DB.checkUsernamePassword(user, pass)
                 if (checkUserPass) {
-                    Toast.makeText(this, "Sign in successful", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Selamat Datang", Toast.LENGTH_SHORT).show()
                     val intent = Intent(applicationContext, ViewWarung::class.java)
                     startActivity(intent)
                 } else {
-                    Toast.makeText(this, "Invalid Credentials", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Data Akun Tidak Ditemukan", Toast.LENGTH_SHORT).show()
                 }
             }
         }

@@ -106,6 +106,11 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "Login.db", null, 1
         return MyDB.rawQuery("SELECT * FROM menu WHERE idmenu = ?", arrayOf(idMenu))
     }
 
+    fun getDataMeja(idMeja: String?): Cursor {
+        val MyDB = this.writableDatabase
+        return MyDB.rawQuery("SELECT * FROM meja WHERE idmeja = ?", arrayOf(idMeja))
+    }
+
     fun updateWarung(idwarung: String, namawarung: String, logo: String, gambar: String): Boolean {
         val MyDB = this.writableDatabase
         val contentValues = ContentValues()
@@ -186,6 +191,11 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "Login.db", null, 1
         db.delete("menu", "idmenu = ?", arrayOf(id))
     }
 
+    fun hapusMeja(id: String) {
+        val db = this.writableDatabase
+        db.delete("meja", "idmeja = ?", arrayOf(id))
+    }
+
     fun checkUsername(username: String): Boolean {
         val MyDB = this.writableDatabase
         val cursor = MyDB.rawQuery("SELECT * FROM users WHERE username = ?", arrayOf(username))
@@ -225,5 +235,4 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, "Login.db", null, 1
             arrayOf(idWarung)
         )
     }
-
 }

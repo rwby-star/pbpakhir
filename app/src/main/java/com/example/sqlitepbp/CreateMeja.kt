@@ -36,15 +36,15 @@ class CreateMeja : AppCompatActivity() {
             val spinnerMeja = spinnerMejaWarung.selectedItem.toString()
 
             if (idMeja.isEmpty() || spinnerMeja.isEmpty()) {
-                Toast.makeText(this, "Harap semua field diisi", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Semua Kolom Harus Diisi", Toast.LENGTH_SHORT).show()
             } else {
                 val insert = DB.insertMeja(idMeja, spinnerMeja)
                 if (insert) {
-                    Toast.makeText(this, "Registered successfully", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Data Meja Berhasil Ditambahkan", Toast.LENGTH_SHORT).show()
                     val intent = Intent(applicationContext, ViewMeja::class.java)
                     startActivity(intent)
                 } else {
-                    Toast.makeText(this, "Registration failed", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Gagal Menambahkan Data Meja", Toast.LENGTH_SHORT).show()
                 }
             }
         }
