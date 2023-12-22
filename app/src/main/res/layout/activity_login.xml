@@ -28,7 +28,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Login"
+                android:text="Selamat Datang"
                 android:id="@+id/loginText"
                 android:textSize="36sp"
                 android:textAlignment="center"
@@ -69,6 +69,13 @@
                 android:layout_marginTop="30dp"
                 android:backgroundTint="@color/lavender"
                 app:cornerRadius = "20dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="Belum Punya Akun ?"
+                android:linksClickable="true"/>
 
             <Button
                 android:layout_width="match_parent"
